@@ -13,7 +13,7 @@ int check_bubble(int *array, size_t size)
 	for (index = 0; index < size - 1; index++)
 		if (array[index] > array[index + 1])
 			return (1);
-	return(0);
+	return (0);
 }
 
 /**
@@ -25,10 +25,11 @@ void bubble_sort(int *array, size_t size)
 {
 	size_t index = 0;
 	int tmp, check = 1;
+
 	if (size == 1)
 		return;
-	
-	while(check == 1)
+
+	while (check == 1)
 	{
 		for (index = 0; index < size - 1; index++)
 		{
