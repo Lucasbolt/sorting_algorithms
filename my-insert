@@ -1,0 +1,60 @@
+#include "sort.h"
+
+
+/**
+ * count_node - count the number of nodes.
+ * @list: array of nodes.
+ * Return: number of nodes.
+ */
+int count_node(listint_t **list)
+{
+	int n;
+	listint_t *head = *list;
+
+	for (n = 0; head; n++)
+		head = head->next;
+	return (n);
+}
+
+/**
+ * insertion_sort_list - sorts a doubly linked list of integers in 
+ *				an ascending manner using the insertion sort algorithm.
+ * @list: pointer to doubly linked list to be sorted.
+ */
+void insertion_sort_list(listint_t **list)
+{
+	listint_t *node, *tmp;
+	int size, index, count;
+
+	size = count_node(list);
+
+	if (size < 2)
+		return;
+	node = *list;
+	for (index = 0; index < size - 1; index++)
+	{
+		if (index < 3)
+		{
+			node = node->next;
+			continue;
+		}
+		count = index;
+		while (count > 0)
+		{
+			if (node->prev->n > node->n)
+			{
+				tmp = node;
+				((node->prev)->prev)->next = node;
+				(node->next)->prev = node->prev;
+				(node->prev)->next = node->next;
+				node->next = node->prev;
+				node->prev = (node->prev)->prev;
+				(node->prev)->prev = tmp;
+				print_list(*list);
+			}
+			count--;
+
+		}
+		node = node->next;
+	}
+}
